@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <title>Golpes</title>
+</head>
+<body>
+    <h1>Relatório de Golpes no WhatsApp</h1>
+    <div class="container">
+        <form id="golpesForm">
+            <label for="nome">Seu Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+
+            <label for="numero">Número de WhatsApp:</label>
+            <input type="text" id="numero" name="numero" required>
+
+            <label for "descricao">Descrição do Golpe:</label>
+            <textarea id="descricao" name="descricao" rows="4" required></textarea>
+
+            <button type="submit" class="custom-button">
+                <div class="svg-wrapper-1">
+                    <div class="svg-wrapper">
+                        <svg class="icon" height="30" width="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M22,15.04C22,17.23 20.24,19 18.07,19H5.93C3.76,19 2,17.23 2,15.04C2,13.07 3.43,11.44 5.31,11.14C5.28,11 5.27,10.86 5.27,10.71C5.27,9.33 6.38,8.2 7.76,8.2C8.37,8.20 8.94,8.43 9.37,8.80C10.14,7.05 11.13,5.44 13.91,5.44C17.28,5.44 18.87,8.06 18.87,10.83C18.87,10.94 18.87,11.06 18.86,11.17C20.65,11.54 22,13.13 22,15.04Z"></path>
+                        </svg>
+                    </div>
+                    <span>Save</span>
+                </div>
+            </button>
+        </form>
+    </div>
+
+    <!-- Linha do tempo de relatórios -->
+    <div class="timeline" id="timeline">
+        <!-- Relatórios serão exibidos aqui -->
+    </div>
+
+    <script src="timeline.js"></script>
+
+    <script>
+        document.getElementById("golpesForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            var nome = document.getElementById("nome").value;
+            var numero = document.getElementById("numero").value;
+            var descricao = document.getElementById("descricao").value;
+
+            var dados = {
+                nome: nome,
+                numero: numero,
+                descricao: descricao
+            };
+
+            // Função para enviar os dados para o servidor com tentativa e repetição
+            function enviarDados() {
+                fetch('/salvar-relatorio', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(dados),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data.message);
+                })
+                .catch(error => {
+                    console.error('Erro ao enviar dados para o servidor:', error);
+                    // Tente novamente após um atraso de 2 segundos
+                    setTimeout(enviarDados, 2000);
+                });
+            }
+
+            // Iniciar o processo de envio de dados
+            enviarDados();
+        });
+    </script>
+</body>
+</html>

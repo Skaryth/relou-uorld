@@ -1,0 +1,137 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.container {
+    max-width: 400px; /* Defina a largura máxima desejada */
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+textarea {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    border: 2px solid #007bff; /* Altera a largura da borda quando ganha foco */
+    transform: scale(1.05); /* Aplica um efeito de escala ao campo de entrada */
+    transition: border 0.3s, transform 0.3s;
+}
+button.custom-button {
+    font-family: inherit;
+    font-size: 20px;
+    background: #212121;
+    color: white;
+    padding: 0.7em 0.7em; /* Ajuste o padding horizontal para diminuir a largura */
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 15px;
+    font-weight: 1000;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: auto; /* Remova a largura fixa */
+}
+
+button.custom-button span {
+    display: block;
+    margin-left: 0.3em;
+    transition: all 0.3s ease-in-out;
+}
+
+button.custom-button svg {
+    display: block;
+    transform-origin: center center;
+    transition: transform 0.3s ease-in-out;
+}
+
+button.custom-button:hover {
+    background: #000;
+}
+
+button.custom-button:hover .svg-wrapper {
+    transform: scale(1.25);
+    transition: 0.5s linear;
+}
+
+button.custom-button:hover svg {
+    transform: translateX(1.2em) scale(1.1);
+    fill: #fff;
+}
+
+button.custom-button:hover span {
+    opacity: 0;
+    transition: 0.5s linear;
+}
+
+button.custom-button:active {
+    transform: scale(0.95);
+}
+
+/* Estilos para formulário responsivo */
+/* Estilos para formulário responsivo */
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    input[type="text"],
+    textarea {
+        padding: 5px;
+    }
+
+    button.custom-button {
+        padding: 8px 16px;
+    }
+}
+
+/* Estilos CSS para a linha do tempo */
+.timeline {
+    margin-top: 20px;
+    border-top: 2px solid #007bff;
+    padding-top: 20px;
+}
+
+.report-item {
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.report-item h2 {
+    color: #333;
+}
+
+.report-item p {
+    margin: 10px 0;
+}
